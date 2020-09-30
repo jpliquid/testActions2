@@ -25,7 +25,7 @@ jobs:
       - uses: ros-tooling/action-ros-ci@0.0.19
         with:
           package-name: plankton
-          target-ros1-distro: eloquent
+          target-ros2-distro: eloquent
  
 
    
