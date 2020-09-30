@@ -1,0 +1,42 @@
+<launch>
+
+
+
+    <include file="$(find-pkg-share uuv_thruster_manager)/launch/thruster_manager.launch">
+        <arg name="model_name" value="test_vehicle"/>
+        <arg name="output_dir" value="/tmp" />
+        <arg name="config_file" value="$(find-pkg-share uuv_thruster_manager)/test/test_vehicle_thruster_manager_proportional.yaml" />        
+        <arg name="reset_tam" value="true"/>
+        <arg name="urdf_file" value="/home/jp/ros2_ws/install/uuv_thruster_manager/share/uuv_thruster_manager/test/robot_description.urdf"/>
+    </include>
+
+    <group>
+        <!-- <push-ros-namespace namespace="test_vehicle"/> -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" exec="joint_state_publisher" output="screen"
+        args="/home/jp/ros2_ws/install/uuv_thruster_manager/share/uuv_thruster_manager/test/robot_description.urdf"
+        node-namespace="test_vehicle">
+            <param name="rate" value="100"/>
+        </node>
+
+        <node name="robot_state_publisher" 
+            pkg="robot_state_publisher" 
+            exec="robot_state_publisher" 
+            respawn="true" 
+            output="screen"
+            args="/home/jp/ros2_ws/install/uuv_thruster_manager/share/uuv_thruster_manager/test/robot_description.urdf"
+            node-namespace="test_vehicle"/>
+
+        <!-- <node name="listener" 
+            pkg="uuv_thruster_manager" 
+            exec="test_tf2.py" 
+            output="screen"
+            node-namespace="test_vehicle"/> -->
+    </group>
+
+    <!-- <node name="tf_dump" pkg="tf2_tools" exec="view_frames.py" output="screen"/> -->
+
+    <!-- <test test-name="test_thruster_allocator_x_axis"
+      pkg="uuv_thruster_manager" 
+         <rosparam param="axis">"x"</rosparam>
+      type="test_thruster_allocator.py"/> -->
+</launch>
