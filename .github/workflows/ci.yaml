@@ -60,7 +60,7 @@ jobs:
           path: ros_ws/src/
         
       - name: rosdep
-        run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths src --ignore-src --rosdistro eloquent -y
+        run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ros_ws/src --ignore-src --rosdistro eloquent -y
 
       - name: build
         run: . /opt/ros/$ROS_DISTRO/setup.sh && colcon build --packages-up-to plankton
