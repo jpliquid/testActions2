@@ -66,7 +66,17 @@ jobs:
 
       - name: run tests
         id: action_ros_ci_step
-        run: . /opt/ros/eloquent/setup.sh && colcon test --packages-up-to plankton
+        run: . /opt/ros/eloquent/setup.sh && . $HOME/ros_ws/install/setup.bash && colcon test --packages-up-to plankton --return-code-on-test-failure --event-handlers console_cohesion+
+      
+      - name: echo results
+        run: . /opt/ros/eloquent/setup.sh  && colcon test-results --all --verbose
+      
+      - name: upload Logs
+        uses: actions/upload-artifact@v1
+        with:
+          name: colcon-logs-linux
+          path: log/
+        if: always()
    
   # This workflow contains a single job called "build"
   #build:
