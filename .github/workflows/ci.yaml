@@ -51,7 +51,7 @@ jobs:
         if: ${{ matrix.ros_version == 2 }}
         uses: ros-tooling/action-ros-ci@0.0.19
         with:
-          #package-name: plankton
+          package-name: plankton plankton_utils
           target-ros2-distro: ${{ matrix.ros_distribution }}
           vcs-repo-file-url: ""
    
