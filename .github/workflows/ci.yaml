@@ -64,9 +64,9 @@ jobs:
       - name: build
         run: . /opt/ros/eloquent/setup.sh && colcon build --packages-up-to plankton
 
-      - name: bun tests
+      - name: run tests
         id: action_ros_ci_step
-        run: . /opt/ros/eloquent/setup.sh && colcon test --packages-up_to plankton
+        run: . /opt/ros/eloquent/setup.sh && colcon test --packages-up-to plankton
    
   # This workflow contains a single job called "build"
   #build:
