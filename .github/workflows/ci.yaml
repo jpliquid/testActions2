@@ -62,14 +62,14 @@ jobs:
         run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ros_ws/src --ignore-src --rosdistro eloquent -y
 
       - name: build
-        run: . /opt/ros/eloquent/setup.sh && colcon build --packages-up-to plankton
+        run: . /opt/ros/eloquent/setup.sh && colcon build --packages-up-to plankton --merge-install
 
       - name: run tests
         id: action_ros_ci_step
-        run: . /opt/ros/eloquent/setup.sh && . $HOME/ros_ws/install/setup.bash && colcon test --packages-up-to plankton --return-code-on-test-failure --event-handlers console_cohesion+
+        run: . /opt/ros/eloquent/setup.sh && colcon test --merge-install --packages-up-to plankton --return-code-on-test-failure --event-handlers console_cohesion+
       
       - name: echo results
-        run: . /opt/ros/eloquent/setup.sh  && colcon test-results --all --verbose
+        run: . /opt/ros/eloquent/setup.sh  && colcon test-result --all --verbose
       
       - name: upload Logs
         uses: actions/upload-artifact@v1
