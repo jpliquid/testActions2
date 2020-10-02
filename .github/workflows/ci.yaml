@@ -36,6 +36,9 @@ jobs:
     container:
       image: ${{ matrix.docker_image }}
     steps:
+      - name: sudo
+        run: |
+          apt-get install --no-install-recommends --quiet --yes sudo
       - name: base
         run: |
           apt-get update
@@ -58,7 +61,7 @@ jobs:
           rosdep init
           rosdep update
           apt install python3-colcon-common-extensions python3-colcon-coveragepy-result	python3-colcon-lcov-result python3-colcon-library-path python3-colcon-metadata python3-colcon-mixin -y
-          apt install pytest3-cov
+          apt install pytest-cov
           
       #- name: setup ROS environment
       #  uses: ros-tooling/setup-ros@0.0.25
@@ -90,7 +93,7 @@ jobs:
 
       - name: run tests
         id: action_ros_ci_step
-        run: . /opt/ros/eloquent/setup.sh && colcon test --mixin coverage-pytest --merge-install --packages-up-to plankton --event-handlers console_cohesion+
+        run: . /opt/ros/eloquent/setup.sh && sudo colcon test --mixin coverage-pytest --merge-install --packages-up-to plankton --event-handlers console_cohesion+
       
       - name: echo results
         run: . /opt/ros/eloquent/setup.sh  && colcon test-result --all --verbose
