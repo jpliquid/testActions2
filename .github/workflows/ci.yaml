@@ -38,6 +38,7 @@ jobs:
     steps:
       - name: sudo
         run: |
+          apt-get update
           apt-get install --no-install-recommends --quiet --yes sudo
       - name: base
         run: |
