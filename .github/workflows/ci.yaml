@@ -86,7 +86,7 @@ jobs:
         run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ros_ws/src --ignore-src --rosdistro eloquent -y
 
       - name: build
-        run: . /opt/ros/eloquent/setup.sh && colcon build --mixin coverage-pytest --packages-up-to plankton --merge-install
+        run: . /opt/ros/eloquent/setup.sh && colcon build --packages-up-to plankton --merge-install
 
       - name: run tests
         id: action_ros_ci_step
