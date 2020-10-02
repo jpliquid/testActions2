@@ -58,7 +58,7 @@ jobs:
           rosdep init
           rosdep update
           apt install python3-colcon-common-extensions python3-colcon-coveragepy-result	python3-colcon-lcov-result python3-colcon-library-path python3-colcon-metadata python3-colcon-mixin -y
-        # apt install python3-colcon-common-extensions colcon-coveragepy-result	colcon-default colcon-lcov-result colcon-library-path==0.2.1 colcon-metadata colcon-mixin -y
+          apt install pytest3-cov
           
       #- name: setup ROS environment
       #  uses: ros-tooling/setup-ros@0.0.25
