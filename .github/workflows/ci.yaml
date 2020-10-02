@@ -36,6 +36,9 @@ jobs:
     container:
       image: ${{ matrix.docker_image }}
     steps:
+      - name: base
+        run: |
+          apt install build-essential clang cmake git wget libasio-dev libtinyxml2-dev rti-connext-dds-5.3.1
       - name: install ros
         run: |
           apt update && apt install locales
