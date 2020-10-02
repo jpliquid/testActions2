@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: base
         run: |
-          apt install build-essential clang cmake git wget libasio-dev libtinyxml2-dev rti-connext-dds-5.3.1
+          apt-get install build-essential
       - name: install ros
         run: |
           apt update && apt install locales
