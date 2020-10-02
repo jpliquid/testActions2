@@ -43,7 +43,7 @@ jobs:
           update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
           export LANG=en_US.UTF-8
           bash -c echo 'Etc/UTC' > /etc/timezone
-          sudo ln	-sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
+          ln	-sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
           apt install tzdata -y
           apt update && apt install curl gnupg2 lsb-release -y
           curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
