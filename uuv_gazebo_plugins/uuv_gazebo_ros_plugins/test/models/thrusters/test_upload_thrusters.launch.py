@@ -34,6 +34,7 @@ def generate_launch_description():
         # node_namespace = 'vehicle',
         package='gazebo_ros',
         node_executable='spawn_entity.py',
+        output='screen',
         # To replace in foxy with parameters=[{'robot_description', Command('ros2 run xacro...')}]
         arguments=args
     )
