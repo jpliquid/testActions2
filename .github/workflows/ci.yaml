@@ -38,15 +38,18 @@ jobs:
     container:
       image: ${{ matrix.docker_image }}
     steps:
+      
       - name: sudo
         run: |
           apt-get update
           apt-get install --no-install-recommends --quiet --yes sudo
-          apt-get install psmisc
+      # Base packages + killall (for killing gazebo)
       - name: base
         run: |
           apt-get update
           apt-get install build-essential clang cmake git wget libasio-dev libtinyxml2-dev lcov -y
+          apt-get install psmisc
+      # action/setup-ros is not used yet as it installs pytest > 6.0 which leads to syntax errors..
       - name: install ros
         run: |
           apt update && apt install locales
@@ -70,6 +73,7 @@ jobs:
       #  uses: ros-tooling/setup-ros@0.0.25
       #  with:
       #    required-ros-distributions: ${{ matrix.ros_distribution }}
+      #install Gazebo, create src directory
       - name: prepare
         run: |
           apt-get -qq update
