@@ -121,7 +121,7 @@ if(BUILD_TESTING)
 
   set(GAZEBO_ROS_PLUGINS_PYTHON_TESTS
     test/test_default_fossen_vehicle.test.py
-    test/test_sphere_vehicle.test.py
+    #test/test_sphere_vehicle.test.py
     #test/test_thrusters.test.py
   )
 
