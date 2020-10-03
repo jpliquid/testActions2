@@ -384,7 +384,7 @@ def generate_test_description():
         exc = 'Launch file ' + gazebo_launch + ' or ' + gazebo_world + ' does not exist'
         raise Exception(exc)
         
-    launch_args = [('world', gazebo_world), ('paused', 'false'), ('gui', 'false'), ]
+    launch_args = [('world', gazebo_world), ('paused', 'false'), ('gui', 'false'), ('verbose', 'true'), ]
     gazebo_launch_desc = IncludeLaunchDescription(
             AnyLaunchDescriptionSource(gazebo_launch), launch_arguments=launch_args)
 
