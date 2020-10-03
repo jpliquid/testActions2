@@ -33,8 +33,8 @@ jobs:
             ros_distribution: eloquent
             ros_version: 2
             
-    container:
-      image: ${{ matrix.docker_image }}
+    #container:
+    #  image: ${{ matrix.docker_image }}
     steps:
       - name: sudo
         run: |
@@ -79,8 +79,6 @@ jobs:
           apt install ros-eloquent-launch-xml -y 
           apt install ros-eloquent-launch-yaml -y
           mkdir -p ros_ws/src
-          gazebo --version
-          gazebo
           
       - name: checkout
         uses: actions/checkout@v2
