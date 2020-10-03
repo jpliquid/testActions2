@@ -79,6 +79,8 @@ jobs:
           apt install ros-eloquent-launch-xml -y 
           apt install ros-eloquent-launch-yaml -y
           mkdir -p ros_ws/src
+          gazebo --version
+          gazebo
           
       - name: checkout
         uses: actions/checkout@v2
@@ -93,7 +95,7 @@ jobs:
 
       - name: run tests
         id: action_ros_ci_step
-        run: . /opt/ros/eloquent/setup.sh && sudo colcon test --merge-install --packages-up-to plankton --event-handlers console_cohesion+
+        run: . /opt/ros/eloquent/setup.sh && colcon test --merge-install --packages-up-to plankton --event-handlers console_cohesion+
       
       - name: echo results
         run: . /opt/ros/eloquent/setup.sh  && colcon test-result --all --verbose
