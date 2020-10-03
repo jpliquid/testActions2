@@ -36,7 +36,10 @@ jobs:
     #container:
     #  image: ${{ matrix.docker_image }}
     steps:
-
+      - name: sudo
+        run: |
+          sudo apt-get update
+          apt-get install --no-install-recommends --quiet --yes sudo
       - name: base
         run: |
           apt-get update
