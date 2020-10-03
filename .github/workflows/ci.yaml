@@ -18,7 +18,9 @@ jobs:
       matrix:
         ros_distribution:
           - eloquent
-
+        
+        build_path:
+          - ros_ws/src
         # Define the Docker image(s) associated with each ROS distribution.
         # The include syntax allows additional variables to be defined, like
         # docker_image in this case. See documentation:
@@ -33,12 +35,11 @@ jobs:
             ros_distribution: eloquent
             ros_version: 2
             
-    #container:
-    #  image: ${{ matrix.docker_image }}
+    container:
+      image: ${{ matrix.docker_image }}
     steps:
       - name: sudo
         run: |
-          sudo -n true
           apt-get update
           apt-get install --no-install-recommends --quiet --yes sudo
       - name: base
@@ -79,15 +80,15 @@ jobs:
           apt install ros-eloquent-gazebo-ros-pkgs -y
           apt install ros-eloquent-launch-xml -y 
           apt install ros-eloquent-launch-yaml -y
-          mkdir -p ros_ws/src
+          mkdir -p ${{ matrix.build_path }}
           
       - name: checkout
         uses: actions/checkout@v2
         with:
-          path: ros_ws/src/
+          path: ${{ matrix.build_path }}
         
       - name: rosdep
-        run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ros_ws/src --ignore-src --rosdistro eloquent -y
+        run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ${{ matrix.build_path }} --ignore-src --rosdistro eloquent -y
 
       - name: build
         run: . /opt/ros/eloquent/setup.sh && colcon build --packages-up-to plankton --merge-install
