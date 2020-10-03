@@ -62,7 +62,7 @@ class TestSphereVehicle(unittest.TestCase):
     def tearDownClass(cls):
         # Shutdown the ROS context
         rclpy.shutdown()
-        #os.system('killall -9 gzserver')
+        os.system('killall -9 gzserver')
 
     # =========================================================================
     def setUp(self):
@@ -205,7 +205,7 @@ class TestSphereVehicle(unittest.TestCase):
 @pytest.mark.rostest
 def generate_test_description():
     # Set env
-    os.environ['GAZEBO_MASTER_URI'] ='http://localhost:3001'
+    #os.environ['GAZEBO_MASTER_URI'] ='http://localhost:3001'
 
     file_path = pathlib.Path(__file__)
     # Here, parent first removes the file name
