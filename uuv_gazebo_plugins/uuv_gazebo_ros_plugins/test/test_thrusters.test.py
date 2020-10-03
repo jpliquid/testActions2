@@ -361,7 +361,7 @@ class TestThrusters(unittest.TestCase):
 @pytest.mark.rostest
 def generate_test_description():
     # Set env
-    os.environ['GAZEBO_MASTER_URI'] = 'http://localhost:3002'
+    #os.environ['GAZEBO_MASTER_URI'] = 'http://localhost:3002'
 
     file_path = pathlib.Path(__file__)
     # Here, parent first removes the file name
