@@ -119,10 +119,10 @@ if(BUILD_TESTING)
   # ament_add_gtest(test2 test/test_sphere_vehicle.test)
   # ament_add_gtest(test3 test/test_thrusters.test)
 
-  set(GAZEBO_ROS_PLUGINS_PYTHON_TESTS
-    test/test_sphere_vehicle.test.py
+  set(GAZEBO_ROS_PLUGINS_PYTHON_TESTS   
     test/test_default_fossen_vehicle.test.py
-    #test/test_thrusters.test.py
+    test/test_sphere_vehicle.test.py
+    test/test_thrusters.test.py
   )
 
   foreach(T ${GAZEBO_ROS_PLUGINS_PYTHON_TESTS})
