@@ -197,10 +197,6 @@ class TestSphereVehicle(unittest.TestCase):
                 self.assertEqual(models.models[0].quadratic_damping[i], 0.0)
 
 
-# if __name__ == '__main__':
-#     import rosunit
-#     rosunit.unitrun(PKG, NAME, TestSphereVehicle)
-
 # =============================================================================
 @pytest.mark.rostest
 def generate_test_description():
