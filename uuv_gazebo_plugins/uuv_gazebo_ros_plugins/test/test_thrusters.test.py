@@ -352,11 +352,6 @@ class TestThrusters(unittest.TestCase):
             self.assertEqual(get_efficiency.efficiency, 1.0)
 
 
-# if __name__ == '__main__':
-#     import rostest
-#     rostest.rosrun(PKG, NAME, TestThrusters, sys.argv)
-
-
 # =============================================================================
 @pytest.mark.rostest
 def generate_test_description():
