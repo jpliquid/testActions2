@@ -41,7 +41,7 @@ jobs:
       
       - name: sudo
         run: |
-          apt-get update
+          at-get update
           apt-get install --no-install-recommends --quiet --yes sudo
       # Base packages + killall (for killing gazebo)
       - name: base
