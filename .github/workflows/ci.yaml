@@ -41,7 +41,7 @@ jobs:
       
       - name: sudo
         run: |
-          at-get update
+          apt-get update
           apt-get install --no-install-recommends --quiet --yes sudo
       # Base packages + killall (for killing gazebo)
       - name: base
@@ -63,7 +63,7 @@ jobs:
           curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
           sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
           apt update
-          apt install ros-eloquent-desktop -y
+          apt install ros-${{ matrix.ros_distribution }}-desktop -y
           apt install python3-rosdep -y
           rosdep init
           rosdep update
@@ -82,7 +82,7 @@ jobs:
           wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
           apt-get install gazebo9 -y
           apt-get install libgazebo9-dev -y
-          apt install ros-eloquent-gazebo-ros-pkgs -y
+          apt install ros-${{ matrix.ros_distribution }}-gazebo-ros-pkgs -y
           apt install ros-eloquent-launch-xml -y 
           apt install ros-eloquent-launch-yaml -y
           mkdir -p ${{ matrix.build_path }}
@@ -93,17 +93,17 @@ jobs:
           path: ${{ matrix.build_path }}
         
       - name: rosdep
-        run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ${{ matrix.build_path }} --ignore-src --rosdistro eloquent -y
+        run: DEBIAN_FRONTEND=noninteractive rosdep update && rosdep install --from-paths ${{ matrix.build_path }} --ignore-src --rosdistro ${{ matrix.ros_distribution }} -y
 
       - name: build
-        run: . /opt/ros/eloquent/setup.sh && colcon build --packages-up-to plankton --merge-install
+        run: . /opt/ros/${{ matrix.ros_distribution }}/setup.sh && colcon build --packages-up-to plankton --merge-install
 
       - name: run tests
         id: action_ros_ci_step
-        run: . /opt/ros/eloquent/setup.sh && colcon test --merge-install --packages-up-to plankton --event-handlers console_cohesion+
+        run: . /opt/ros/${{ matrix.ros_distribution }}/setup.sh && colcon test --merge-install --packages-up-to plankton --event-handlers console_cohesion+
       
       - name: echo results
-        run: . /opt/ros/eloquent/setup.sh  && colcon test-result --all --verbose
+        run: . /opt/ros/${{ matrix.ros_distribution }}/setup.sh  && colcon test-result --all --verbose
       
       - name: upload Logs
         uses: actions/upload-artifact@v1
